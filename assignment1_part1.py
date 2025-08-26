@@ -1,19 +1,27 @@
+# assignment1_part1.py
 
-def list_divide(numbers, divide):
-    """
-    The function returns the number of elements in the numbers list that are divisibleby divide
-    """
+class ListDivideException(Exception):
+    """Custom exception for
+        the list divide errors"""
     pass
 
+def list_divide(numbers, divide = 2):
+    """Return numbers that are
+        divisible from divide."""
+    return sum(1 for n in numbers if n % divide == 0)
+
 def test_list_divide():
-    """
-    Test listDivide
-    """
-    assert listDivide([1,2,3,4,5]) == 2
-    assert listDivide([2,4,6,8,10]) == 5
-    assert listDivide([30, 54, 63,98, 100], divide=10) == 2
-    assert listDivide([]) == 0
-    assert listDivide([1,2,3,4,5], 1) == 5
-    
-if __name__ == "__main__":
-    testListDivide()
+    """Test the function
+        for list_divide"""
+    try:
+        assert list_divide([1, 2, 3, 4, 5]) == 2
+        assert list_divide([2, 4, 6, 8, 10]) == 5
+        assert list_divide([30, 54, 63, 98, 100], divide = 10) == 2
+        assert list_divide([]) == 0
+        assert list_divide([1, 2, 3, 4, 5], 1) == 5
+    except AssertionError:
+        raise ListDivideException()
+
+if __name__ == '__main__':
+    test_list_divide()
+    print("All tests passed.")
